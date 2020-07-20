@@ -1,14 +1,12 @@
-import dotenv from 'dotenv'
+import envVar from './safety'
 
-dotenv.config({
-  path: '.env',
-})
+console.log(envVar.TOKEN)
 
 async function fetchGraphQL(text: string, variables: {}) {
   const response = await fetch('https://api.github.com/graphql', {
     method: 'POST',
     headers: {
-      Authorization: 'bearer 5df89638e57dcc4d1f31ca004ab3a5eb44be316b',
+      Authorization: `bearer ${envVar.TOKEN}`,
       'Content-Type': 'application/json',
     },
     body: JSON.stringify({
