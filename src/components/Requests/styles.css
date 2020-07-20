@@ -1,0 +1,12 @@
+.request-container {
+  width: 100%;
+  padding: 0 4.375em;
+  font-size: 1em;
+  font-weight: lighter;
+  display: flex;
+  color: #21617a;
+  margin: 4em auto;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
