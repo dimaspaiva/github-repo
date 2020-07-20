@@ -4,6 +4,7 @@ import fetchGraphQL from './relay-environment'
 import Header from './components/Header'
 import MainChart from './components/MainChart'
 import TopList from './components/TopList'
+import Requests from './components/Requests'
 
 interface Author {
   additions: number
@@ -216,18 +217,14 @@ function App() {
         <TopList />
       </section>
 
-      <h4>Expected requests: {Math.ceil(totalCommits / 100)}</h4>
-      <h4>Expected total commits: {totalCommits}</h4>
-      <h4>Request counter: {commitList.request}</h4>
-      <h4>Commits: {commitList.count}</h4>
-      <h4>Commit authors: {commitList.authors.size}</h4>
-      <h4>Total add lines +: {commitList.additions}</h4>
-      <h4>Total rmv lines -: {commitList.deletions}</h4>
-      <div>
-        {Array.from(commitList.authors.keys()).map((key) => (
-          <p key={Math.random() * 10}>{key}</p>
-        ))}
-      </div>
+      <Requests
+        additions={commitList.additions}
+        deletions={commitList.deletions}
+        authors={commitList.authors}
+        count={commitList.count}
+        request={commitList.request}
+        totalCommits={totalCommits}
+      />
     </div>
   )
 }
