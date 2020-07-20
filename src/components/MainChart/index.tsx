@@ -50,7 +50,10 @@ const MainChart = () => {
           <div className="bar">
             <div
               className="bar-visual"
-              style={{ width: `${Math.random() * 50}em` }}
+              style={{
+                width: `${Math.random() * 50}em`,
+                transition: '0.3s ease',
+              }}
             />
             <p className="commit-amount">
               {(456839 * Math.random()).toFixed(0)}
@@ -60,7 +63,10 @@ const MainChart = () => {
           <div className="bar">
             <div
               className="bar-visual"
-              style={{ width: `${Math.random() * 50}em` }}
+              style={{
+                width: `${Math.random() * 50}em`,
+                transition: '0.3s ease',
+              }}
             />
             <p className="commit-amount">
               {(456839 * Math.random()).toFixed(0)}
@@ -70,7 +76,10 @@ const MainChart = () => {
           <div className="bar">
             <div
               className="bar-visual"
-              style={{ width: `${Math.random() * 50}em` }}
+              style={{
+                width: `${Math.random() * 50}em`,
+                transition: '0.3s ease',
+              }}
             />
             <p className="commit-amount">
               {(456839 * Math.random()).toFixed(0)}
@@ -80,7 +89,10 @@ const MainChart = () => {
           <div className="bar">
             <div
               className="bar-visual"
-              style={{ width: `${Math.random() * 50}em` }}
+              style={{
+                width: `${Math.random() * 50}em`,
+                transition: '0.3s ease',
+              }}
             />
             <p className="commit-amount">
               {(456839 * Math.random()).toFixed(0)}
@@ -90,7 +102,10 @@ const MainChart = () => {
           <div className="bar">
             <div
               className="bar-visual"
-              style={{ width: `${Math.random() * 50}em` }}
+              style={{
+                width: `${Math.random() * 50}em`,
+                transition: '0.3s ease',
+              }}
             />
             <p className="commit-amount">
               {(456839 * Math.random()).toFixed(0)}

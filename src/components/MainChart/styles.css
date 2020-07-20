@@ -58,6 +58,7 @@
   align-items: center;
   height: 4em;
   margin: 0.75em 0;
+  transition: 0.3s ease;
 }
 
 .bar-visual {
