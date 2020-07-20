@@ -1,0 +1,42 @@
+.top-list-container {
+  margin: 0 1em;
+  font-size: 1em;
+}
+
+.top-list-title {
+  font-style: 1.5em;
+  color: #163f4f;
+  width: 18.75vw;
+  text-align: center;
+  margin: 0 auto;
+}
+
+.list-titles {
+  width: 40.7vw;
+  font-weight: bold;
+  display: flex;
+  justify-content: space-between;
+  color: #163f4f;
+  padding: 0 2em;
+}
+
+.list-user {
+  width: 40.7vw;
+  display: flex;
+  justify-content: space-between;
+  margin: 1em 0;
+}
+
+.name {
+  color: #21617a;
+  cursor: pointer;
+}
+
+.name:hover {
+  font-weight: bold;
+}
+
+.amount {
+  font-weight: bold;
+  color: #033e05;
+}

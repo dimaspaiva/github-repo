@@ -3,6 +3,7 @@ import React, { useEffect, useState, useReducer } from 'react'
 import fetchGraphQL from './relay-environment'
 import Header from './components/Header'
 import MainChart from './components/MainChart'
+import TopList from './components/TopList'
 
 interface Author {
   additions: number
@@ -123,6 +124,7 @@ function App() {
         pageInfo,
         totalCount,
       } = data.repository.object.history
+
       setTotalCommits(totalCount)
       dispatchCommitList({ type: 'new-request' })
       updateData(nodes)
@@ -208,6 +210,11 @@ function App() {
         Transforming data in to <strong>knowledge</strong> and
         <strong> business strategy</strong>!
       </p>
+
+      <section className="lists">
+        <TopList />
+        <TopList />
+      </section>
 
       <h4>Expected requests: {Math.ceil(totalCommits / 100)}</h4>
       <h4>Expected total commits: {totalCommits}</h4>
