@@ -1,0 +1,91 @@
+.chart-container {
+  background: #91dcfa;
+  border: 0.1875em solid #2f89ad;
+  border-radius: 0.375em;
+  margin: 3em auto;
+  width: 90.3vw;
+  padding: 1.5em 2em;
+}
+
+.chart-title {
+  font-size: 1.5em;
+  color: #163f4f;
+  font-weight: bold;
+}
+
+.chart-title::after {
+  content: '';
+  display: block;
+  width: 10em;
+  border-bottom: #2f89ad solid 0.1875rem;
+  margin: 0.5em;
+}
+
+.chart {
+  display: flex;
+}
+
+.users {
+  width: 4em;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-right: #2f89ad solid 0.1875rem;
+  padding-right: 1.5em;
+}
+
+.photo {
+  margin: 0.75em 0;
+  width: 4em;
+  height: 4em;
+  border-radius: 100%;
+  overflow: hidden;
+  box-shadow: 0.1875em 0.1875em 0.25em rgba(0, 0, 0, 0.3),
+    -0.1875em -0.1875em 0.375em rgba(255, 255, 255, 0.45);
+}
+
+.user-img {
+  width: 100%;
+}
+
+.bars-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.bar {
+  display: flex;
+  align-items: center;
+  height: 4em;
+  margin: 0.75em 0;
+}
+
+.bar-visual {
+  margin: 2.5em 1.5em;
+  width: 36em;
+  height: 2em;
+  border-radius: 0.1875em;
+  background: #2f89ad;
+}
+
+.commit-amount {
+  font-size: 1em;
+  font-weight: bold;
+  color: #163f4f;
+}
+
+.chart-link-container {
+  width: 100%;
+}
+
+.chart-link {
+  text-align: center;
+  cursor: pointer;
+  width: 15%;
+  margin-left: 85%;
+  color: #163f4f;
+}
+
+.chart-link:hover {
+  font-weight: bold;
+}

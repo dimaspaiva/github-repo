@@ -201,6 +201,9 @@ function App() {
 
   return (
     <div className="App">
+      <Header />
+      <MainChart />
+
       <p className="slogan">
         Transforming data in to <strong>knowledge</strong> and
         <strong> business strategy</strong>!

@@ -1,0 +1,18 @@
+.header-container {
+  height: 5em;
+  width: 100%;
+  padding: 0 4.375em;
+  background-color: #163f4f;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.logo {
+  font-weight: bold;
+  font-size: 2em;
+  letter-spacing: 0.075em;
+  font-style: italic;
+  text-align: center;
+  color: #d9eaf1;
+}
