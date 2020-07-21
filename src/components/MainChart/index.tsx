@@ -19,6 +19,46 @@ const MainChart: React.FC<MainChartProps> = ({
   topCommits,
   pushedDate,
 }) => {
+  const temporaryUsers = () => {
+    const fakeUsers = []
+    for (let i = 0; i < 5; i++) {
+      fakeUsers.push(
+        <div className="photo">
+          <img
+            src={
+              'https://image.flaticon.com/icons/png/512/1183/1183672.png'
+            }
+            alt="user"
+            className="user-img"
+          />
+        </div>
+      )
+    }
+
+    return fakeUsers
+  }
+
+  const temporaryBars = () => {
+    const fakeBars = []
+
+    for (let i = 0; i++; i < 5) {
+      fakeBars.push(
+        <div className="bar">
+          <div
+            className="bar-visual"
+            style={{
+              width: '2em',
+              transition: '0.3s ease',
+            }}
+          />
+          <p className="commit-amount">0 | loading...</p>
+        </div>
+      )
+    }
+
+    return fakeBars
+  }
+
   return (
     <section className="chart-container">
       <h3 className="chart-title">
@@ -27,152 +67,46 @@ const MainChart: React.FC<MainChartProps> = ({
       </h3>
       <div className="chart">
         <div className="users">
-          <div className="photo">
-            <img
-              src={
-                topCommits[0]?.avatarUrl ||
-                'https://image.flaticon.com/icons/png/512/1183/1183672.png'
-              }
-              alt="user"
-              className="user-img"
-            />
-          </div>
-          <div className="photo">
-            <img
-              src={
-                topCommits[1]?.avatarUrl ||
-                'https://image.flaticon.com/icons/png/512/1183/1183672.png'
-              }
-              alt="user"
-              className="user-img"
-            />
-          </div>
-          <div className="photo">
-            <img
-              src={
-                topCommits[2]?.avatarUrl ||
-                'https://image.flaticon.com/icons/png/512/1183/1183672.png'
-              }
-              alt="user"
-              className="user-img"
-            />
-          </div>
-          <div className="photo">
-            <img
-              src={
-                topCommits[3]?.avatarUrl ||
-                'https://image.flaticon.com/icons/png/512/1183/1183672.png'
-              }
-              alt="user"
-              className="user-img"
-            />
-          </div>
-          <div className="photo">
-            <img
-              src={
-                topCommits[4]?.avatarUrl ||
-                'https://image.flaticon.com/icons/png/512/1183/1183672.png'
-              }
-              alt="user"
-              className="user-img"
-            />
-          </div>
+          {topCommits[0]?.commits
+            ? topCommits.map((commit) => (
+                <div className="photo">
+                  <img
+                    src={
+                      commit?.avatarUrl ||
+                      'https://image.flaticon.com/icons/png/512/1183/1183672.png'
+                    }
+                    alt="user"
+                    className="user-img"
+                  />
+                </div>
+              ))
+            : temporaryUsers()}
         </div>
+
         <div className="bars-container">
-          <div className="bar">
-            <div
-              className="bar-visual"
-              style={{
-                width: topCommits[0]?.commits
-                  ? `${
-                      60 *
-                      (topCommits[0].commits /
-                        (topCommits[0].commits + topCommits[1].commits))
-                    }em`
-                  : '0.5em',
-                transition: '0.3s ease',
-              }}
-            />
-            <p className="commit-amount">
-              {topCommits[0]?.commits || 0} | {topCommits[0]?.login}
-            </p>
-          </div>
-
-          <div className="bar">
-            <div
-              className="bar-visual"
-              style={{
-                width: topCommits[0]?.commits
-                  ? `${
-                      60 *
-                      (topCommits[1].commits /
-                        (topCommits[0].commits + topCommits[1].commits))
-                    }em`
-                  : '0.5em',
-                transition: '0.6s ease',
-              }}
-            />
-            <p className="commit-amount">
-              {topCommits[1]?.commits || 0} | {topCommits[1]?.login}
-            </p>
-          </div>
-
-          <div className="bar">
-            <div
-              className="bar-visual"
-              style={{
-                width: topCommits[0]?.commits
-                  ? `${
-                      60 *
-                      (topCommits[2].commits /
-                        (topCommits[0].commits + topCommits[1].commits))
-                    }em`
-                  : '0.5em',
-                transition: '0.3s ease',
-              }}
-            />
-            <p className="commit-amount">
-              {topCommits[2]?.commits || 0} | {topCommits[2]?.login}
-            </p>
-          </div>
-
-          <div className="bar">
-            <div
-              className="bar-visual"
-              style={{
-                width: topCommits[0]?.commits
-                  ? `${
-                      60 *
-                      (topCommits[3].commits /
-                        (topCommits[0].commits + topCommits[1].commits))
-                    }em`
-                  : '0.5em',
-                transition: '0.3s ease',
-              }}
-            />
-            <p className="commit-amount">
-              {topCommits[3]?.commits || 0} | {topCommits[3]?.login}
-            </p>
-          </div>
-
-          <div className="bar">
-            <div
-              className="bar-visual"
-              style={{
-                width: topCommits[0]?.commits
-                  ? `${
-                      60 *
-                      (topCommits[4].commits /
-                        (topCommits[0].commits + topCommits[1].commits))
-                    }em`
-                  : '0.5em',
-                transition: '0.3s ease',
-              }}
-            />
-            <p className="commit-amount">
-              {topCommits[4]?.commits || 0} | {topCommits[4]?.login}
-            </p>
-          </div>
+          {topCommits[0]
+            ? topCommits?.map((commit) => (
+                <div className="bar">
+                  <div
+                    className="bar-visual"
+                    style={{
+                      width: topCommits[0]?.commits
+                        ? `${
+                            60 *
+                            (commit.commits /
+                              (topCommits[0].commits +
+                                topCommits[1].commits))
+                          }em`
+                        : '0.5em',
+                      transition: '0.3s ease',
+                    }}
+                  />
+                  <p className="commit-amount">
+                    {commit.commits || 0} | {commit.login}
+                  </p>
+                </div>
+              ))
+            : temporaryBars()}
         </div>
       </div>
 
