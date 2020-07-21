@@ -1,7 +1,5 @@
 import envVar from './safety'
 
-console.log(envVar.TOKEN)
-
 async function fetchGraphQL(text: string, variables: {}) {
   const response = await fetch('https://api.github.com/graphql', {
     method: 'POST',
@@ -15,7 +13,6 @@ async function fetchGraphQL(text: string, variables: {}) {
     }),
   })
 
-  console.log(process.env)
   return await response.json()
 }
 

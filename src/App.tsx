@@ -11,6 +11,7 @@ interface Author {
   deletions: number
   commits: number
   login?: string
+  avatarUrl?: string
 }
 
 interface State {
@@ -19,6 +20,7 @@ interface State {
   additions: number
   deletions: number
   authors: Map<string, Author>
+  topCommits: Author[]
 }
 
 const initialState: State = {
@@ -26,20 +28,27 @@ const initialState: State = {
   request: 0,
   additions: 0,
   deletions: 0,
-  authors: new Map<string, Author>(),
+  authors: new Map(),
+  topCommits: [],
 }
 
 function reducer(
   state: State,
-  action: { type: string; key?: string; value?: Author }
+  action: { type: string; key?: string; value?: Author; array?: Author[] }
 ): State {
   switch (action.type) {
+    case 'top-commits':
+      if (!action.array) {
+        return state
+      }
+
+      return { ...state, topCommits: action.array }
+
     case 'new-request':
       return { ...state, request: state.request + 1 }
 
     case 'increment':
       if (!action.key || !action.value) {
-        console.log(action)
         return state
       }
 
@@ -52,6 +61,7 @@ function reducer(
           deletions: author.deletions + commit.deletions,
           commits: author.commits + 1,
           login: commit?.login,
+          avatarUrl: commit?.avatarUrl,
         }
 
         return {
@@ -105,6 +115,7 @@ function App() {
                   additions
                   deletions
                   author {
+                    avatarUrl
                     name
                     user {
                       id
@@ -152,10 +163,14 @@ function App() {
             value: {
               ...node,
               login: node.author.user.login,
+              avatarUrl: node.author.avatarUrl,
             },
           })
         }
       }
+
+      const top5 = topCommits(commitList.authors)
+      dispatchCommitList({ type: 'top-commits', array: top5 })
     }
 
     const loopRequest = async (
@@ -178,6 +193,7 @@ function App() {
                       deletions
                       author {
                           name
+                          avatarUrl
                           user {
                             id
                             login
@@ -196,16 +212,27 @@ function App() {
       const { nodes, pageInfo } = data.repository.object.history
       updateData(nodes)
       dispatchCommitList({ type: 'new-request' })
-      if (pageInfo.hasNextPage && counter < 2) {
+      if (pageInfo.hasNextPage && counter < 100) {
         loopRequest(pageInfo.endCursor, counter + 1)
       }
     }
   }, [])
 
+  const topCommits = (authors: Map<string, Author>) => {
+    const allUsers = Array.from(authors.entries()).map((it) => ({
+      ...it[1],
+    }))
+
+    return allUsers
+      .sort((a, b) => a.commits - b.commits)
+      .reverse()
+      .slice(0, 5)
+  }
+
   return (
     <div className="App">
       <Header />
-      <MainChart />
+      <MainChart topCommits={commitList.topCommits} />
 
       <p className="slogan">
         Transforming data in to <strong>knowledge</strong> and

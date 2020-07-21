@@ -2,7 +2,19 @@ import React from 'react'
 
 import './styles.css'
 
-const MainChart = () => {
+interface Author {
+  additions: number
+  deletions: number
+  commits: number
+  login?: string
+  avatarUrl?: string
+}
+
+interface MainChartProps {
+  topCommits: Author[]
+}
+
+const MainChart: React.FC<MainChartProps> = ({ topCommits }) => {
   return (
     <section className="chart-container">
       <h3 className="chart-title">
@@ -12,35 +24,50 @@ const MainChart = () => {
         <div className="users">
           <div className="photo">
             <img
-              src="https://cdn.pixabay.com/photo/2020/03/20/18/52/fashion-4951644_960_720.jpg"
+              src={
+                topCommits[0]?.avatarUrl ||
+                'https://image.flaticon.com/icons/png/512/1183/1183672.png'
+              }
               alt="user"
               className="user-img"
             />
           </div>
           <div className="photo">
             <img
-              src="https://cdn.pixabay.com/photo/2020/03/20/18/52/fashion-4951644_960_720.jpg"
+              src={
+                topCommits[1]?.avatarUrl ||
+                'https://image.flaticon.com/icons/png/512/1183/1183672.png'
+              }
               alt="user"
               className="user-img"
             />
           </div>
           <div className="photo">
             <img
-              src="https://cdn.pixabay.com/photo/2020/03/20/18/52/fashion-4951644_960_720.jpg"
+              src={
+                topCommits[2]?.avatarUrl ||
+                'https://image.flaticon.com/icons/png/512/1183/1183672.png'
+              }
               alt="user"
               className="user-img"
             />
           </div>
           <div className="photo">
             <img
-              src="https://cdn.pixabay.com/photo/2020/03/20/18/52/fashion-4951644_960_720.jpg"
+              src={
+                topCommits[3]?.avatarUrl ||
+                'https://image.flaticon.com/icons/png/512/1183/1183672.png'
+              }
               alt="user"
               className="user-img"
             />
           </div>
           <div className="photo">
             <img
-              src="https://cdn.pixabay.com/photo/2020/03/20/18/52/fashion-4951644_960_720.jpg"
+              src={
+                topCommits[4]?.avatarUrl ||
+                'https://image.flaticon.com/icons/png/512/1183/1183672.png'
+              }
               alt="user"
               className="user-img"
             />
@@ -51,12 +78,18 @@ const MainChart = () => {
             <div
               className="bar-visual"
               style={{
-                width: `${Math.random() * 50}em`,
+                width: topCommits[0]?.commits
+                  ? `${
+                      60 *
+                      (topCommits[0].commits /
+                        (topCommits[0].commits + topCommits[1].commits))
+                    }em`
+                  : '0.5em',
                 transition: '0.3s ease',
               }}
             />
             <p className="commit-amount">
-              {(456839 * Math.random()).toFixed(0)}
+              {topCommits[0]?.commits || 0} {topCommits[0]?.login}
             </p>
           </div>
 
@@ -64,12 +97,18 @@ const MainChart = () => {
             <div
               className="bar-visual"
               style={{
-                width: `${Math.random() * 50}em`,
-                transition: '0.3s ease',
+                width: topCommits[0]?.commits
+                  ? `${
+                      60 *
+                      (topCommits[1].commits /
+                        (topCommits[0].commits + topCommits[1].commits))
+                    }em`
+                  : '0.5em',
+                transition: '0.6s ease',
               }}
             />
             <p className="commit-amount">
-              {(456839 * Math.random()).toFixed(0)}
+              {topCommits[1]?.commits || 0} {topCommits[1]?.login}
             </p>
           </div>
 
@@ -77,12 +116,18 @@ const MainChart = () => {
             <div
               className="bar-visual"
               style={{
-                width: `${Math.random() * 50}em`,
+                width: topCommits[0]?.commits
+                  ? `${
+                      60 *
+                      (topCommits[2].commits /
+                        (topCommits[0].commits + topCommits[1].commits))
+                    }em`
+                  : '0.5em',
                 transition: '0.3s ease',
               }}
             />
             <p className="commit-amount">
-              {(456839 * Math.random()).toFixed(0)}
+              {topCommits[2]?.commits || 0} {topCommits[2]?.login}
             </p>
           </div>
 
@@ -90,12 +135,18 @@ const MainChart = () => {
             <div
               className="bar-visual"
               style={{
-                width: `${Math.random() * 50}em`,
+                width: topCommits[0]?.commits
+                  ? `${
+                      60 *
+                      (topCommits[3].commits /
+                        (topCommits[0].commits + topCommits[1].commits))
+                    }em`
+                  : '0.5em',
                 transition: '0.3s ease',
               }}
             />
             <p className="commit-amount">
-              {(456839 * Math.random()).toFixed(0)}
+              {topCommits[3]?.commits || 0} {topCommits[3]?.login}
             </p>
           </div>
 
@@ -103,12 +154,18 @@ const MainChart = () => {
             <div
               className="bar-visual"
               style={{
-                width: `${Math.random() * 50}em`,
+                width: topCommits[0]?.commits
+                  ? `${
+                      60 *
+                      (topCommits[4].commits /
+                        (topCommits[0].commits + topCommits[1].commits))
+                    }em`
+                  : '0.5em',
                 transition: '0.3s ease',
               }}
             />
             <p className="commit-amount">
-              {(456839 * Math.random()).toFixed(0)}
+              {topCommits[4]?.commits || 0} {topCommits[4]?.login}
             </p>
           </div>
         </div>
