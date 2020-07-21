@@ -12,13 +12,18 @@ interface Author {
 
 interface MainChartProps {
   topCommits: Author[]
+  pushedDate?: string
 }
 
-const MainChart: React.FC<MainChartProps> = ({ topCommits }) => {
+const MainChart: React.FC<MainChartProps> = ({
+  topCommits,
+  pushedDate,
+}) => {
   return (
     <section className="chart-container">
       <h3 className="chart-title">
         Linux open source top contributors with more commits
+        <label className="chart-title-date"> (since {pushedDate})</label>
       </h3>
       <div className="chart">
         <div className="users">
@@ -89,7 +94,7 @@ const MainChart: React.FC<MainChartProps> = ({ topCommits }) => {
               }}
             />
             <p className="commit-amount">
-              {topCommits[0]?.commits || 0} {topCommits[0]?.login}
+              {topCommits[0]?.commits || 0} | {topCommits[0]?.login}
             </p>
           </div>
 
@@ -108,7 +113,7 @@ const MainChart: React.FC<MainChartProps> = ({ topCommits }) => {
               }}
             />
             <p className="commit-amount">
-              {topCommits[1]?.commits || 0} {topCommits[1]?.login}
+              {topCommits[1]?.commits || 0} | {topCommits[1]?.login}
             </p>
           </div>
 
@@ -127,7 +132,7 @@ const MainChart: React.FC<MainChartProps> = ({ topCommits }) => {
               }}
             />
             <p className="commit-amount">
-              {topCommits[2]?.commits || 0} {topCommits[2]?.login}
+              {topCommits[2]?.commits || 0} | {topCommits[2]?.login}
             </p>
           </div>
 
@@ -146,7 +151,7 @@ const MainChart: React.FC<MainChartProps> = ({ topCommits }) => {
               }}
             />
             <p className="commit-amount">
-              {topCommits[3]?.commits || 0} {topCommits[3]?.login}
+              {topCommits[3]?.commits || 0} | {topCommits[3]?.login}
             </p>
           </div>
 
@@ -165,7 +170,7 @@ const MainChart: React.FC<MainChartProps> = ({ topCommits }) => {
               }}
             />
             <p className="commit-amount">
-              {topCommits[4]?.commits || 0} {topCommits[4]?.login}
+              {topCommits[4]?.commits || 0} | {topCommits[4]?.login}
             </p>
           </div>
         </div>

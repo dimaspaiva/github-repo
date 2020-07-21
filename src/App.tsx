@@ -12,6 +12,7 @@ interface Author {
   commits: number
   login?: string
   avatarUrl?: string
+  pushedDate?: string
 }
 
 interface State {
@@ -21,6 +22,7 @@ interface State {
   deletions: number
   authors: Map<string, Author>
   topCommits: Author[]
+  pushedDate?: string
 }
 
 const initialState: State = {
@@ -30,6 +32,7 @@ const initialState: State = {
   deletions: 0,
   authors: new Map(),
   topCommits: [],
+  pushedDate: '',
 }
 
 function reducer(
@@ -54,6 +57,14 @@ function reducer(
 
       const author = state.authors.get(action.key)
       const commit = action.value
+      let dateFormat = ''
+
+      if (commit.pushedDate) {
+        const splittedDate = commit.pushedDate.substr(0, 10).split('-')
+        dateFormat = `${splittedDate[1]}/${splittedDate[2]}/${splittedDate[0]}`
+      } else {
+        dateFormat = state.pushedDate || ''
+      }
 
       if (author) {
         const update = {
@@ -69,6 +80,7 @@ function reducer(
           count: state.count + 1,
           additions: state.additions + commit.additions,
           deletions: state.deletions + commit.deletions,
+          pushedDate: dateFormat,
           authors: state.authors.set(action.key, { ...update }),
         }
       }
@@ -78,6 +90,7 @@ function reducer(
         count: state.count + 1,
         additions: state.additions + commit.additions,
         deletions: state.deletions + commit.deletions,
+        pushedDate: dateFormat,
         authors: state.authors.set(action.key, {
           ...action.value,
           commits: 0,
@@ -112,6 +125,7 @@ function App() {
                   hasNextPage
                 }
                 nodes {
+                  pushedDate
                   additions
                   deletions
                   author {
@@ -189,6 +203,7 @@ function App() {
                       hasNextPage
                     }
                     nodes {
+                      pushedDate
                       additions
                       deletions
                       author {
@@ -216,7 +231,7 @@ function App() {
         loopRequest(pageInfo.endCursor, counter + 1)
       }
     }
-  }, [])
+  }, [commitList.authors])
 
   const topCommits = (authors: Map<string, Author>) => {
     const allUsers = Array.from(authors.entries()).map((it) => ({
@@ -232,7 +247,10 @@ function App() {
   return (
     <div className="App">
       <Header />
-      <MainChart topCommits={commitList.topCommits} />
+      <MainChart
+        pushedDate={commitList.pushedDate}
+        topCommits={commitList.topCommits}
+      />
 
       <p className="slogan">
         Transforming data in to <strong>knowledge</strong> and

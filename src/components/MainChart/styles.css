@@ -10,7 +10,7 @@
 .chart-title {
   font-size: 1.5em;
   color: #163f4f;
-  font-weight: bold;
+  font-weight: 400;
 }
 
 .chart-title::after {
@@ -19,6 +19,10 @@
   width: 10em;
   border-bottom: #2f89ad solid 0.1875rem;
   margin: 0.5em;
+}
+
+.chart-title-date {
+  font-style: italic;
 }
 
 .chart {
