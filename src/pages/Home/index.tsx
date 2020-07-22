@@ -6,6 +6,7 @@ import MainChart from '../../components/MainChart'
 import TopList from '../../components/TopList'
 import Requests from '../../components/Requests'
 
+import './styles.css'
 export interface Author {
   additions: number
   deletions: number
@@ -288,10 +289,12 @@ const Home = () => {
         top100Commits={commitList.topCommits}
       />
 
-      <p className="slogan">
-        Transforming data in to <strong>knowledge</strong> and
-        <strong> business strategy</strong>!
-      </p>
+      <section className="slogan-container">
+        <p className="slogan">
+          Transforming data in to <strong>knowledge</strong> and
+          <strong> business strategy</strong>!
+        </p>
+      </section>
 
       <section className="lists">
         <TopList

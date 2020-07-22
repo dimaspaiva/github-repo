@@ -1,6 +1,6 @@
 .chart-container {
-  background: #91dcfa;
-  border: 0.1875em solid #2f89ad;
+  /* background: #d9eaf1; */
+  /* border: 0.1875em solid #163f4f; */
   border-radius: 0.375em;
   margin: 3em auto;
   width: 90.3vw;
@@ -17,7 +17,7 @@
   content: '';
   display: block;
   width: 10em;
-  border-bottom: #2f89ad solid 0.1875rem;
+  border-bottom: #163f4f solid 0.1875rem;
   margin: 0.5em;
 }
 
@@ -34,7 +34,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  border-right: #2f89ad solid 0.1875rem;
+  border-right: #163f4f solid 0.1875rem;
   padding-right: 1.5em;
 }
 
@@ -70,7 +70,7 @@
   width: 36em;
   height: 2em;
   border-radius: 0.1875em;
-  background: #2f89ad;
+  background: #163f4f;
 }
 
 .commit-amount {

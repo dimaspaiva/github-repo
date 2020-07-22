@@ -6,39 +6,5 @@
 }
 
 body {
-  background: #d9eaf1;
+  background: #91dcfa;
 }
-
-.slogan {
-  margin: 0 auto 2em auto;
-  text-align: center;
-  font-weight: lighter;
-  font-size: 2em;
-  width: 38.2vw;
-  color: #163f4f;
-}
-
-.slogan::after {
-  content: '';
-  display: block;
-  width: 4.5em;
-  margin: 0.5em auto 0 auto;
-  border-bottom: #163f4f solid 0.375rem;
-}
-
-.lists {
-  display: flex;
-  width: 100%;
-  padding: 0 4.375em;
-  justify-content: space-between;
-  align-items: center;
-}
-/* 
-.lists::after {
-  content: '';
-  display: block;
-  position: absolute;
-  height: 41.25em;
-  border-left: #163f4f solid 0.1875em;
-  left: 50%;
-} */

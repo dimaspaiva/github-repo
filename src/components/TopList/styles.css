@@ -1,5 +1,7 @@
 .top-list-container {
   margin: 0 1em;
+  padding: 1em;
+  border-radius: 0.1875em;
   font-size: 1em;
 }
 
