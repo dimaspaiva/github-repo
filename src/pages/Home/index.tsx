@@ -22,6 +22,8 @@ interface State {
   deletions: number
   authors: Map<string, Author>
   topCommits: Author[]
+  topAdditions: Author[]
+  topDeletions: Author[]
   pushedDate?: string
 }
 
@@ -32,6 +34,8 @@ const initialState: State = {
   deletions: 0,
   authors: new Map(),
   topCommits: [],
+  topAdditions: [],
+  topDeletions: [],
   pushedDate: '',
 }
 
@@ -44,8 +48,19 @@ function reducer(
       if (!action.array) {
         return state
       }
-
       return { ...state, topCommits: action.array }
+
+    case 'top-additions':
+      if (!action.array) {
+        return state
+      }
+      return { ...state, topAdditions: action.array }
+
+    case 'top-deletions':
+      if (!action.array) {
+        return state
+      }
+      return { ...state, topDeletions: action.array }
 
     case 'new-request':
       return { ...state, request: state.request + 1 }
@@ -190,7 +205,11 @@ const Home = () => {
       )
 
       const top100 = topCommits(allUsers)
+      const topAdd = topAdditions(allUsers)
+      const topDel = topDeletions(allUsers)
       dispatchCommitList({ type: 'top-commits', array: top100 })
+      dispatchCommitList({ type: 'top-additions', array: topAdd })
+      dispatchCommitList({ type: 'top-deletions', array: topDel })
     }
 
     const loopRequest = async (
@@ -243,7 +262,21 @@ const Home = () => {
     return allUsers
       .sort((a, b) => a.commits - b.commits)
       .reverse()
-      .slice(0, 5)
+      .slice(0, 100)
+  }
+
+  const topAdditions = (allUsers: Author[]) => {
+    return allUsers
+      .sort((a, b) => a.additions - b.additions)
+      .reverse()
+      .slice(0, 10)
+  }
+
+  const topDeletions = (allUsers: Author[]) => {
+    return allUsers
+      .sort((a, b) => a.deletions - b.deletions)
+      .reverse()
+      .slice(0, 10)
   }
 
   return (
