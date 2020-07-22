@@ -2,13 +2,7 @@ import React from 'react'
 
 import './styles.css'
 
-interface Author {
-  additions: number
-  deletions: number
-  commits: number
-  login?: string
-  avatarUrl?: string
-}
+import { Author } from '../../pages/Home'
 
 interface MainChartProps {
   topCommits: Author[]

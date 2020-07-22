@@ -6,7 +6,7 @@ import MainChart from '../../components/MainChart'
 import TopList from '../../components/TopList'
 import Requests from '../../components/Requests'
 
-interface Author {
+export interface Author {
   additions: number
   deletions: number
   commits: number
