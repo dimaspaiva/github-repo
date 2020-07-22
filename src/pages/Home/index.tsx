@@ -253,7 +253,8 @@ const Home = () => {
       const { nodes, pageInfo } = data.repository.object.history
       updateData(nodes)
       dispatchCommitList({ type: 'new-request' })
-      if (pageInfo.hasNextPage && counter < 100) {
+      // if (pageInfo.hasNextPage && counter < 100) {
+      if (pageInfo.hasNextPage) {
         loopRequest(pageInfo.endCursor, counter + 1)
       }
     }
