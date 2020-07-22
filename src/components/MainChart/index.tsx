@@ -6,6 +6,7 @@ import { Author } from '../../pages/Home'
 
 interface MainChartProps {
   topCommits: Author[]
+  top100Commits: Author[]
   pushedDate?: string
 }
 

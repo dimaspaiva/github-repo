@@ -1,43 +1,55 @@
 import React from 'react'
 
+import { Author } from '../../pages/Home'
+
 import './styles.css'
 
-const TopList = () => {
+interface TopListProps {
+  amountColor: string
+  title: string
+  dataType: string
+  authors: Author[]
+}
+
+const TopList: React.FC<TopListProps> = ({
+  amountColor,
+  title,
+  authors,
+  dataType,
+}) => {
+  // workaround to show dynamically
+  const showData = (author: Author) => {
+    switch (dataType) {
+      case 'additions':
+        return author.additions
+
+      case 'deletions':
+        return author.deletions
+
+      default:
+        return 'none'
+    }
+  }
+
   return (
     <div className="top-list-container">
-      <h2 className="top-list-title">
-        Top 10 commiters with more line add
-      </h2>
+      <h2 className="top-list-title">{title}</h2>
       <div className="top-list">
         <div className="list-titles">
           <p>User</p>
           <p>Lines</p>
         </div>
 
-        <div className="list-user">
-          <p className="name">Belgium Dev</p>
-          <p className="amount">753,951</p>
-        </div>
-
-        <div className="list-user">
-          <p className="name">Belgium Dev</p>
-          <p className="amount">753,951</p>
-        </div>
-
-        <div className="list-user">
-          <p className="name">Belgium Dev</p>
-          <p className="amount">753,951</p>
-        </div>
-
-        <div className="list-user">
-          <p className="name">Belgium Dev</p>
-          <p className="amount">753,951</p>
-        </div>
-
-        <div className="list-user">
-          <p className="name">Belgium Dev</p>
-          <p className="amount">753,951</p>
-        </div>
+        {authors.map((author, index) => (
+          <div className="list-user">
+            <p className="name">
+              {index + 1} - {author.login}
+            </p>
+            <p className="amount" style={{ color: amountColor }}>
+              {showData(author)}
+            </p>
+          </div>
+        ))}
       </div>
     </div>
   )

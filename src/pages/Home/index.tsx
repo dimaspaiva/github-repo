@@ -284,7 +284,8 @@ const Home = () => {
       <Header />
       <MainChart
         pushedDate={commitList.pushedDate}
-        topCommits={commitList.topCommits}
+        topCommits={commitList.topCommits.slice(0, 5)}
+        top100Commits={commitList.topCommits}
       />
 
       <p className="slogan">
@@ -293,8 +294,18 @@ const Home = () => {
       </p>
 
       <section className="lists">
-        <TopList />
-        <TopList />
+        <TopList
+          title="Top 10 commiters with more line add"
+          dataType="additions"
+          amountColor="#033E05"
+          authors={commitList.topAdditions.slice(0, 10)}
+        />
+        <TopList
+          dataType="deletions"
+          title="Top 10 commiters with more line removed"
+          amountColor="#620717"
+          authors={commitList.topDeletions.slice(0, 10)}
+        />
       </section>
 
       <Requests
